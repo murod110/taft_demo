@@ -1,0 +1,332 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="product-big-title-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-bit-title text-center">
+                    <h2>{{product.quality.name}}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="single-product-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                
+                
+                <div class="single-sidebar">
+                    <h2 class="sidebar-title">Products</h2>
+                    {% for p in products %}
+                    <div class="thubmnail-recent">
+                        <img src="{{p.photo.url}}" data-toggle="modal" data-target="#imgu-{{forloop.counter}}" class="recent-thumb" alt="">
+                        <h2><a href="{% url 'more' p.id%}">{{p.quality.name}} - {{p.date.year}}</a></h2>
+                        <div class="product-sidebar-price">
+                            {% if product.sale %}<ins>${{product.saleValue}}</ins> <del>${{product.price}}</del>{% else %}{% if product.price %}<ins>${{product.price}}</ins>{% endif %}{% endif %} 
+                        </div>                             
+                    </div>
+                    {% endfor %}
+                </div>
+                {% for p in products %}
+                <div class="modal fade" id="imgu-{{forloop.counter}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="imgu-{{forloop.counter}}"></h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                         <img src="{{p.photo.url}}" style="width:100% ;" alt="">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                {% endfor %}
+                <div class="single-sidebar">
+                    <h2 class="sidebar-title">Recent Posts</h2>
+                    <ul>
+                        {% for i in best %}
+                        <li><a href="{% url 'more' i.id%}">{{i.quality.name}} - {{i.design}}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="col-md-8">
+                <div class="product-content-right">
+                    <div class="product-breadcroumb">
+                        
+                        <a href="{% url 'home %'}">Home</a>
+                        <a href="{% url 'cat-home' 2%}">{{product.quality.cat}}</a>
+                        <a href="{% url 'designs' product.design.palet.id%}">{{product.design.palet}}</a>
+                        <a href="{% url 'more' product.id%}">{{product.quality.name}} - {{product.design}}</a>
+                        
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="product-images">
+                                <div class="product-main-img" data-toggle="modal" data-target="#img">
+                                    <img src="{{product.photo.url}}" alt="" >
+                                </div>
+                                <div class="modal fade" id="img" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title" id="img"></h5>
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button>
+                                        </div>
+                                        <div class="modal-body">
+                                         <img src="{{product.photo.url}}" style="width:100% ;" alt="">
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                
+                                <div class="product-gallery">
+                                    {% for p in photos %}
+                                        {% if p == product %}
+                                        <a href="{% url 'more' p.id%}"><img src="{{p.photo.url}}" alt="" style="width: 100px; border: 3px solid #ff0000;margin-bottom: 5px;" class="shadow"></a>
+                                        {% else %}
+                                        <a href="{% url 'more' p.id%}"><img src="{{p.photo.url}}" alt="" style="width: 100px;margin-bottom: 5px;"></a>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-6">
+                            <div class="product-inner">
+                                <h2 class="product-name">{{product.quality.name}}</h2>
+                                <div class="product-inner-price">
+                                    <b><i>{{product.design.palet}}_{{product.design.name}}_{{product.color}}</i></b>
+                                    {% if product.sale %}<ins>${{product.saleValue}}</ins> <del>${{product.price}}</del>{% else %}{% if product.price %}<ins>${{product.price}}</ins>{% endif %}{% endif %} 
+                                </div>    
+                                
+                                <form method="POST" class="cart">{% csrf_token %}
+                                    <div class="quantity">
+                                        {% if product.quality.cat.id == 2 %}<input type="number" size="4"class="input-text qty text" title="Qty" name="quantity" min="3000" value="3000" step="100" style="width: 120px;">{% else %}<input type="number" size="4"class="input-text qty text" title="Qty" name="quantity" min="100" step="100" value="100" style="width: 120px;">{% endif %}<span> M<sup>2</sup></span>
+                                    </div>
+                                    <button class="add_to_cart_button" type="submit">Add to cart</button>
+                                </form>   
+                                
+                                <div class="product-inner-category">
+                                    <p>Category: <a href="{% url 'cat-home' 2%}">{{product.quality.cat}}</a>. Tags: <a href="{% url 'news' %}">news</a>, <a href="{% url 'best' %}">best</a>. </p>
+                                </div> 
+                                
+                                <div role="tabpanel">
+                                    <ul class="product-tab" role="tablist">
+                                        {% for i in product.design.palet.char.all %}
+                                        {% if forloop.first %}
+                                        <li role="presentation" class="active"><a href="#{{i.id}}" aria-controls="home" role="tab" data-toggle="tab">{{i.name}}</a></li>
+                                        {% else %}
+                                        <li role="presentation"><a href="#{{i.id}}" aria-controls="home" role="tab" data-toggle="tab">{{i.name}}</a></li>
+                                        {% endif %}
+                                        {% endfor %}
+                                    </ul>
+                                    <div class="tab-content">
+                                        {% for i in product.design.palet.char.all %}
+                                        {% if forloop.first %}
+                                        <div role="tabpanel" class="tab-pane fade in active" id="{{i.id}}">
+                                            <h2>Product Description</h2>  
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>
+                                                            Character
+                                                        </th>
+                                                        <th>
+                                                            Value
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                           Pile: 
+                                                        </td>
+                                                        <td>
+                                                            {{i.pile}} 
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                           Pile height:
+                                                        </td>
+                                                        <td>
+                                                            {{i.pile_height}} mm
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                           Yarn weight: 
+                                                        </td>
+                                                        <td>
+                                                            {{i.yarn_weight}} gr (m<sup>2</sup>)
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                           Primary Basis:
+                                                        </td>
+                                                        <td>
+                                                            {{i.primary_basic}}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                           Secondary Basis:
+                                                        </td>
+                                                        <td>
+                                                            {{i.secondary_basic}}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                           Points:
+                                                        </td>
+                                                        <td>
+                                                            {{i.points}} (m<sup>2</sup>)
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                           Total weight:
+                                                        </td>
+                                                        <td>
+                                                            {{i.total_weight}}gr (m<sup>2</sup>)
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        {% else %}
+                                        <div role="tabpanel" class="tab-pane fade in" id="{{i.id}}">
+                                            <h2>Product Description</h2>  
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>
+                                                            Character
+                                                        </th>
+                                                        <th>
+                                                            Value
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                           Pile: 
+                                                        </td>
+                                                        <td>
+                                                            {{i.pile}} 
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                           Pile height:
+                                                        </td>
+                                                        <td>
+                                                            {{i.pile_height}} mm
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                           Yarn weight: 
+                                                        </td>
+                                                        <td>
+                                                            {{i.yarn_weight}} gr (m<sup>2</sup>)
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                           Primary Basis:
+                                                        </td>
+                                                        <td>
+                                                            {{i.primary_basic}}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                           Secondary Basis:
+                                                        </td>
+                                                        <td>
+                                                            {{i.secondary_basic}}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                           Points:
+                                                        </td>
+                                                        <td>
+                                                            {{i.points}} (m<sup>2</sup>)
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                           Total weight:
+                                                        </td>
+                                                        <td>
+                                                            {{i.total_weight}}gr (m<sup>2</sup>)
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                </div>                    
+            </div>
+        </div>
+        <div class="related-products-wrapper">
+            <h2 class="related-products-title">Related Products</h2>
+            <div class="related-products-carousel">
+                {% for k,v in rateds.items %}
+                <div class="single-product">
+                    <div class="product-f-image">
+                        <img src="{{k.photo.url}}" style="height: 400px;" alt="">
+                        <div class="product-hover">
+                            <a href="{% url 'buy' k.id%}" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                            <a href="{% url 'more' k.id%}" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                        </div>
+                    </div>
+
+                    <h2><a href="{% url 'more' k.id%}">{{k.quality.name}} - {{k.design}}</a></h2>
+
+                    <div class="product-carousel-price">
+                        {% if k.sale %}<ins>${{k.saleValue}}</ins> <del>${{k.price}}</del>{% else %}{% if k.price %}<ins>${{k.price}}</ins>{% endif %}{% endif %} 
+                    </div> 
+                </div>
+                {% endfor %}           
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .modal{
+      top: 15%;
+    }
+    
+</style>
+{% endblock %}

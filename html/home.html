@@ -1,0 +1,298 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="slider-area">
+  <!-- Slider -->
+<div class="block-slider block-slider4">
+<ul class="" id="bxslider-home4">
+  <li>
+    <img src="https://vorwerk-flooring.com/fileadmin/user_upload/Vorwerk_Essential_1031_3Q41_Raum_JPEG.jpg" style="width: 100%;" alt="Slide" id="slider-img">
+    <div class="caption-group">
+      <h2 class="caption title">
+        <span class="primary"> <strong>Tufting</strong></span>
+      </h2>
+      <h4 class="caption subtitle">Quality</h4>
+      <a class="caption button-radius" href="https://urgaz.com"><span class="icon"></span>Shop now</a>
+    </div>
+  </li>
+  <li>
+    <img src="https://vorwerk-flooring.com/fileadmin/new_website/headerbilder/Vorwerk-Elara-Kettelteppich.jpg" style="width: 100%;" alt="Slide" id="slider-img">
+    <div class="caption-group">
+      <h2 class="caption title">
+        <span class="primary"> <strong>Tufting</strong></span>
+      </h2>
+      <h4 class="caption subtitle">Quality</h4>
+      <a class="caption button-radius" href="https://urgaz.com"><span class="icon"></span>Shop now</a>
+    </div>
+  </li>
+  <li>
+    <img src="https://vorwerk-flooring.com/fileadmin/new_website/headerbilder/Vorwerk-Safira-Deluxe-Teppich.jpg" style="width: 100%;" alt="Slide" id="slider-img">
+    <div class="caption-group">
+      <h2 class="caption title">
+        <span class="primary"> <strong>Printed</strong></span>
+      </h2>
+      <h4 class="caption subtitle">Quality</h4>
+      <a class="caption button-radius" href="https://urgaz.com"><span class="icon"></span>Shop now</a>
+    </div>
+  </li>
+  <li>
+    <img src="https://cms.pm/uploads/landscapershalifax.seesite.biz_--_511139018.jpg" style="width: 100%;" alt="Slide" id="slider-img">
+    <div class="caption-group">
+      <h2 class="caption title">
+        <span class="primary"> <strong>Grass</strong></span>
+      </h2>
+      <h4 class="caption subtitle">Quality</h4>
+      <a class="caption button-radius" href="https://urgaz.com"><span class="icon"></span>Shop now</a>
+    </div>
+  </li>
+  <li>
+    <img src="https://www.compassboise.com/wp-content/uploads/2020/02/Hero-Image.jpg" style="width: 100%;" alt="Slide" id="slider-img">
+    <div class="caption-group">
+      <h2 class="caption title">
+        <span class="primary"><strong>Grass</strong></span>
+      </h2>
+      <h4 class="caption subtitle">Quality</h4>
+      <a class="caption button-radius" href="https://urgaz.com"><span class="icon"></span>Shop now</a>
+    </div>
+  </li>
+  <li>
+    <img src="https://images.victoriaplum.com/blog/blogpost-covers/943ccb5d-e3b6-4e8e-9166-9de9ec9dc88e.jpg?auto=format%2Ccompress&q=55" style="width: 100%;" alt="Slide" id="slider-img">
+    <div class="caption-group">
+      <h2 class="caption title">
+        <span class="primary"><strong>Bath Mats</strong></span>
+      </h2>
+      <h4 class="caption subtitle">Quality</h4>
+      <a class="caption button-radius" href="https://urgaz.com"><span class="icon"></span>Shop now</a>
+    </div>
+  </li>
+  <li>
+    <img src="https://cdn.shopify.com/s/files/1/0070/9115/9122/articles/bigstock-Soft-Grey-Mat-With-Slippers-On-441347771.jpg?v=1643230355" style="width: 100%;" alt="Slide" id="slider-img">
+    <div class="caption-group">
+      <h2 class="caption title">
+        <span class="primary"><strong>Bath Mats</strong></span>
+      </h2>
+      <h4 class="caption subtitle">Quality</h4>
+      <a class="caption button-radius" href="https://urgaz.com"><span class="icon"></span>Shop now</a>
+    </div>
+  </li>
+</ul>
+</div>
+<!-- ./Slider -->
+</div> <!-- End slider area -->
+
+<div class="promo-area">
+<div class="zigzag-bottom"></div>
+<div class="container">
+    <div class="row">
+        <a class="col-md-3 col-sm-6" href="{% url 'cat-home' 1%}">
+            <div class="single-promo promo1" style="color:#fff !important; ">
+                <i class="fa-solid fa-circle-nodes" id="category"></i>
+                <p>Tufting</p>
+            </div>
+        </a>
+        <a class="col-md-3 col-sm-6" href="{% url 'cat-home' 2%}">
+            <div class="single-promo promo2" style="color:#fff !important; ">
+                <i class="fa-solid fa-print" id="category"></i>
+                <p>Printed</p>
+            </div>
+        </a>
+        <a class="col-md-3 col-sm-6" href="{% url 'cat-home' 3%}" >
+            <div class="single-promo promo3" style="color:#fff !important; ">
+                <i class="fa-solid fa-seedling" id="category"></i>
+                <p>Grass</p>
+            </div>
+        </a>
+        <a class="col-md-3 col-sm-6" href="{% url 'cat-home' 4%}">
+            <div class="single-promo promo4" style="color:#fff !important; ">
+                <i class="fa-solid fa-bath" id="category"></i>
+                <p>Bath Mats</p>
+            </div>
+        </a>
+    </div>
+</div>
+</div> <!-- End promo area -->
+
+<div class="maincontent-area">
+<div class="zigzag-bottom"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="latest-product">
+                <h2 class="section-title">Latest Products</h2>
+                <div class="product-carousel">
+                    {% for k,v in rateds.items %}
+                    <div class="single-product">
+                        <div class="product-f-image">
+                            <img src="{{k.photo.url}}" alt="" style="height:250px ;" class="latest-product_img">
+                            <div class="product-hover">
+                                <a href="{% url 'buy' k.id%}" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                                <a href="{% url 'more' k.id%}" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                            </div>
+                        </div>
+                        
+                        <h2><a href="{% url 'more' k.id%}">{{k.quality.name}}- {{k.design}} {{k.date.year}}</a></h2>
+                        <div class="product-carousel-price">
+                            {% if k.sale %}<ins>${{k.saleValue}}</ins> <del>${{k.price}}</del>{% else %}{% if k.price %}<ins>${{k.price}}</ins>{% endif %}{% endif %} 
+                        </div>
+                       
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div> <!-- End main content area -->
+
+<div class="brands-area">
+<div class="zigzag-bottom"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="brand-wrapper">
+                <div class="brand-list">
+                    <img src="{% static 'images/terra1.png' %}" alt="" style="width:100px ;">
+                    <a href="https://urgaz.com"><img src="{% static 'images/urgaz.png' %}" alt="" style="width:100px ;position: relative;top: 10px;"></a>
+                    <img src="{% static 'images/asia1.png' %}" alt="" style="width:100px ;position: relative;top: 10px;">
+                    <img src="{% static 'images/sn.png' %}" alt="" style="width:120px ;position: relative;top: -5px">
+                    <img src="{% static 'images/sn-carpet.png' %}" alt="" style="width:120px ;">
+                                            
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div> <!-- End brands area -->
+
+<div class="product-widget-area">
+<div class="zigzag-bottom"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="single-product-widget">
+                <h2 class="product-wid-title">Top Sellers</h2>
+                <a href="{% url 'best' %}" class="wid-view-more">View All</a>
+                {% for best in bests %}
+                <div class="single-wid-product">
+                    <a data-toggle="modal" data-target="#imga-{{forloop.counter}}"><img src="{{best.photo.url}}" alt="" class="product-thumb"></a>
+                    <h2><a href="{% url 'more' best.id%}">{{best.quality}} - {{best.design}}</a></h2>
+                    <div class="product-wid-rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <div class="product-wid-price">
+                      <a href="{% url 'buy' best.id%}" class="add_to_cart_button">Buy</a> <a href="{% url 'more' best.id%}" class="add_to_cart_button">View</a>
+                    </div>                            
+                </div>
+                {% endfor %}
+            </div>
+            {% for best in bests %}
+            <div class="modal fade" id="imga-{{forloop.counter}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="img-{{forloop.counter}}"></h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                     <img src="{{best.photo.url}}" alt="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+        </div>
+        <div class="col-md-4">
+            <div class="single-product-widget">
+                <h2 class="product-wid-title">Recently Viewed</h2>
+                <a href="{% url 'category' %}" class="wid-view-more">View All</a>
+                {% for best in products %}
+                <div class="single-wid-product">
+                  <a data-toggle="modal" data-target="#imgb-{{forloop.counter}}"><img src="{{best.photo.url}}" alt="" class="product-thumb"></a>
+                  <h2><a href="{% url 'more' best.id%}">{{best.quality}} - {{best.design}}</a></h2>
+                  <div class="product-wid-rating">
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                  </div>
+                  <div class="product-wid-price">
+                      <a href="{% url 'buy' best.id%}" class="add_to_cart_button">Buy</a> <a href="{% url 'more' best.id%}" class="add_to_cart_button">View</a>
+                  </div>                            
+                </div>
+                {% endfor %}
+            </div>
+            {% for best in products %}
+            <div class="modal fade" id="imgb-{{forloop.counter}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="img-{{forloop.counter}}"></h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                     <img src="{{best.photo.url}}" alt="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+        </div>
+        <div class="col-md-4">
+            <div class="single-product-widget">
+                <h2 class="product-wid-title">Top New</h2>
+                <a href="{% url 'news' %}" class="wid-view-more">View All</a>
+                {% for n in news %}
+                <div class="single-wid-product">
+                    <a data-toggle="modal" data-target="#imgn-{{forloop.counter}}"><img src="{{n.photo.url}}" alt="" class="product-thumb"></a>
+                    <h2><a href="{% url 'more' n.id%}">{{n.quality}} {{n.design}}</a></h2>
+                    <div class="product-wid-rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <div class="product-wid-price">
+                      <a href="{% url 'buy' n.id%}" class="add_to_cart_button">Buy</a> <a href="" class="add_to_cart_button">View</a>
+                    </div>                            
+                </div>
+                {% endfor %}
+            </div>
+            {% for n in news %}
+            <div class="modal fade" id="imgn-{{forloop.counter}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="img-{{forloop.counter}}"></h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                     <img src="{{n.photo.url}}" alt="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+</div> <!-- End product widget area -->
+<style>
+    .modal{
+      top: 30%;
+    }
+</style>
+{% endblock %}

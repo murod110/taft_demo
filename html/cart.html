@@ -1,0 +1,703 @@
+{% extends  'base.html' %}
+{% load static %}
+{% block content %}
+
+{% if cart %}
+  {% if cart.phone != None %}
+  <div class="containerx">
+    <div id="container">
+    
+      <div id="error-box">
+        <div class="dot"></div>
+        <div class="dot two"></div>
+        <div class="face2">
+          <div class="eye"></div>
+          <div class="eye right"></div>
+          <div class="mouth sad"></div>
+        </div>
+        <div class="shadow move"></div>
+        <div class="message"><h1 class="alert">Error!</h1> <p style="font-size: 9px;" id="id">There are no products in your cart</div>
+        <a href="{% url 'home' %}" class="button-box"><h1 class="red">try again</h1></a>
+      </div>
+    </div>
+  </div> 
+  <style>
+
+
+    .containerx {
+      display: grid;
+      overflow: hidden;
+      text-transform: uppercase;
+      text-align: center;
+      margin-top: 50px;
+      margin-bottom: 50px;
+    }
+    
+    #container {
+      position: relative;
+      margin: auto;
+      overflow: hidden;
+      width: 700px;
+      left: -150px;
+      height: 250px;
+    }
+    
+    .alert,.red {
+      font-size: 0.9em;
+      font-weight: 100;
+      letter-spacing: 3px;
+      padding-top: 5px;
+      color: #FCFCFC;
+      padding-bottom: 5px;
+      text-transform: uppercase;
+    }
+    
+    
+    
+    .red {
+        position: relative;
+        top: 5px;
+        color: #5a88ca;
+    }
+    
+    .alert {
+      font-weight: 700;
+      letter-spacing: 5px;
+    }
+    
+     #id{
+      margin-top: -5px;
+      font-size: 0.5em;
+      font-weight: 100;
+      color: #5e5e5e;
+      letter-spacing: 1px;
+    }
+    
+    a, .dot {
+      cursor: pointer;
+    }
+    
+    
+    
+    #error-box {
+      position: absolute;
+      width: 35%;
+      height: 100%;
+      right: 12%;
+      background: linear-gradient(to bottom left, #5a88ca 40%, #5a8 100%);
+      border-radius: 20px;
+      box-shadow: 5px 5px 20px rgba(203, 205, 211, 0.1);
+    }
+    
+    .dot {
+      width: 8px;
+      height: 8px;
+      background: #FCFCFC;
+      border-radius: 50%;
+      position: absolute;
+      top: 4%;
+      right: 6%;
+    }
+    .dot:hover {
+      background: #c9c9c9;
+    }
+    
+    .two {
+      right: 12%;
+      opacity: 0.5;
+    }
+    
+    .face {
+      position: absolute;
+      width: 22%;
+      height: 22%;
+      background: #FCFCFC;
+      border-radius: 50%;
+      border: 1px solid #777777;
+      top: 21%;
+      left: 37.5%;
+      z-index: 2;
+      animation: bounce 1s ease-in infinite;
+    }
+    
+    .face2 {
+      position: absolute;
+      width: 22%;
+      height: 22%;
+      background: #FCFCFC;
+      border-radius: 50%;
+      border: 1px solid #777777;
+      top: 21%;
+      left: 37.5%;
+      z-index: 2;
+      animation: roll 3s ease-in-out infinite;
+    }
+    
+    .eye {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      background: #777777;
+      border-radius: 50%;
+      top: 40%;
+      left: 20%;
+    }
+    
+    .right {
+      left: 68%;
+    }
+    
+    .mouth {
+      position: absolute;
+      top: 43%;
+      left: 41%;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+    }
+    
+    .happy {
+      border: 2px solid;
+      border-color: transparent #777777 #777777 transparent;
+      transform: rotate(45deg);
+    }
+    
+    .sad {
+      top: 49%;
+      border: 2px solid;
+      border-color: #777777 transparent transparent #777777;
+      transform: rotate(45deg);
+    }
+    
+    .shadow {
+      position: absolute;
+      width: 21%;
+      height: 3%;
+      opacity: 0.5;
+      background: #777777;
+      left: 40%;
+      top: 43%;
+      border-radius: 50%;
+      z-index: 1;
+    }
+    
+    .scale {
+      animation: scale 1s ease-in infinite;
+    }
+    
+    .move {
+      animation: move 3s ease-in-out infinite;
+    }
+    
+    .message {
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      height: 40%;
+      top: 47%;
+    }
+    
+    .button-box {
+      position: absolute;
+      background: #FCFCFC;
+      width: 50%;
+      height: 15%;
+      border-radius: 20px;
+      top: 83%;
+      left: 25%;
+      outline: 0;
+      border: none;
+      box-shadow: 2px 2px 10px rgba(119, 119, 119, 0.5);
+      transition: all 0.5s ease-in-out;
+    }
+    .button-box:hover {
+      background: #efefef;
+      transform: scale(1.05);
+      transition: all 0.3s ease-in-out;
+    }
+    
+    @keyframes bounce {
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+    @keyframes scale {
+      50% {
+        transform: scale(0.9);
+      }
+    }
+    @keyframes roll {
+      0% {
+        transform: rotate(0deg);
+        left: 25%;
+      }
+      50% {
+        left: 60%;
+        transform: rotate(168deg);
+      }
+      100% {
+        transform: rotate(0deg);
+        left: 25%;
+      }
+    }
+    @keyframes move {
+      0% {
+        left: 25%;
+      }
+      50% {
+        left: 60%;
+      }
+      100% {
+        left: 25%;
+      }
+    }
+    @media only screen and (min-width: 480px) and (max-width: 767px){
+        #container{
+            position: relative;
+            left: -225px;
+        }
+    }
+    </style>
+  {% else %}
+  <div class="product-big-title-area">
+      <div class="container">
+          <div class="row">
+              <div class="col-md-12">
+                  <div class="product-bit-title text-center">
+                      <h2>Shoping Cart</h2>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="container">
+      <div class="row">
+          <div class="col-sm-12 col-md-10 col-md-offset-1">
+              <table class="table table-hover">
+                  <thead>
+                      <tr>
+                          <th>Product</th>
+                          <th>Quantity</th>
+                          <th class="text-center">Price</th>
+                          <th class="text-center">Total</th>
+                          <th> </th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      {% for c in cart %}
+                      <tr>
+                          <td class="col-sm-10 col-md-6">
+                            {% if c.product != None %}
+                            <div class="media">
+                                <a class="thumbnail pull-left" href="{% url 'more' c.product.id %}"> <img class="media-object" src="{{c.product.photo.url}}" style="width: 72px; height: 72px;"> </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading"><a href="{% url 'more' c.product.id %}">{{c.product.quality}}</a></h4>
+                                    <h5 class="media-heading"> {{c.product.design}} <a href="{% url 'more' c.product.id %}">{{c.product.color}}</a></h5>
+                                    <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
+                                </div>
+                            </div>
+                            {% else %}
+                            <div class="media">
+                              <a class="thumbnail pull-left" href="{% url 'photo-more' c.photo.id %}"> <img class="media-object" src="{{c.photo.photo.url}}" style="width: 72px; height: 72px;"> </a>
+                              <div class="media-body">
+                                  <h4 class="media-heading"><a href="{% url 'photo-more' c.photo.id %}">{{c.photo.product.quality}}</a></h4>
+                                  <h5 class="media-heading"> {{c.photo.design}} <a href="{% url 'photo-more' c.photo.id %}">{{c.photo.color}}</a></h5>
+                                  <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
+                              </div>
+                            </div>
+                            {% endif %}
+                          </td>
+                          <td class="col-sm-1 col-md-2" style="text-align: center">
+                          <input type="number" class="form-control" id="example" value="{{c.quantity}}" disabled>
+                          </td>
+                          <td class="col-sm-1 col-md-1 text-center">
+                            {% if c.product != None %}
+                            <strong>{% if c.product.sale %}{{c.product.saleValue}} 000{% else %}{{c.product.price}} 000{% endif %}</strong>
+                            {% else %} 
+                            <strong>{% if c.photo.product.sale %}{{c.photo.product.saleValue}} 000{% else %}{{c.photo.product.price}} 000{% endif %}</strong>
+                            {% endif %}
+                          </td>
+                          <td class="col-sm-1 col-md-1 text-center"><strong id="name{{c.id}}"></strong></td>
+                          <td class="col-sm-1 col-md-1">
+                          <a href="{% url 'remove' c.id%}" type="button" class="btn btn-danger">
+                              <span class="glyphicon glyphicon-remove"></span> Remove
+                          </a></td>
+                          {% if c.product %}
+                            {% if c.product.sale %}
+                            <script>
+                                let val = Number(document.getElementById("example").value)
+                                let pri = Number("{{c.product.saleValue}}")
+                                document.getElementById("name{{c.id}}").innerHTML = pri*val + " " + "So'm"
+                            </script>
+                            {% else %} 
+                            <script>
+                                let values = Number(document.getElementById("example").value)
+                                let prices = Number("{{c.product.price}}")
+                                document.getElementById("name{{c.id}}").innerHTML=prices*values+" "+"So'm"
+                            </script>
+                            {% endif %}
+                          {% else %}
+                            {% if c.photo.product.sale %}
+                            <script>
+                                let valu = Number(document.getElementById("example").value)
+                                let pric = Number("{{c.photo.product.saleValue}}")
+                                document.getElementById("name{{c.id}}").innerHTML = pric*valu + " " + "So'm"
+                            </script>
+                            {% else %} 
+                            <script>
+                                let value = Number(document.getElementById("example").value)
+                                let price = Number("{{c.photo.product.price}}")
+                                document.getElementById("name{{c.id}}").innerHTML=price*value+" "+"So'm"
+                            </script>
+                            {% endif %}
+                          {% endif %}
+                      </tr>
+                      {% endfor %}
+                      <tr>
+                          <td>   </td>
+                          <td>   </td>
+                          <td>   </td>
+                          <td>
+                          <a data-toggle="modal" data-target=".bs-example-modal-sm" type="button" class="btn btn-default">
+                              <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
+                          </a>
+                          
+                          </td>
+                          <td>
+                          <a href="{% url 'clear' %}" type="button" class="btn btn-success">
+                              Checkout <span class="glyphicon glyphicon-play"></span>
+                          </a></td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+  </div>
+  <!-- Modal Phone Number -->
+  <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-s">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <h4 class="modal-title">Purchase</h4>
+        </div>
+        <div class="modal-body">
+          <form method="POST" action="{% url 'purchase' %}">{% csrf_token %}
+            <div id="form-group" class="form-field">
+              <label for="phone">Phone number:</label>
+              <input id="phone" type="tel" name="phone" clas="form-contol">
+            </div>
+            
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Purchase</button>
+          
+        </form>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+  <script>
+    
+  const phoneInputField = document.querySelector("#phone");
+    const phoneInput = window.intlTelInput(phoneInputField, {
+      utilsScript:
+        "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+    });
+  
+
+    const info = document.querySelector(".alert-info");
+
+    function process(event) {
+    event.preventDefault();
+
+    const phoneNumber = phoneInput.getNumber();
+
+    
+    }
+  </script>
+  <style>
+      #phone {
+    border-radius: 4px;
+    padding-top: 10px;
+    width: 110;
+    padding-bottom: 10px;
+    border: 1px solid #ccc;
+    }
+  </style>
+  {% endif %}
+{% else %}
+<div class="product-big-title-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-bit-title text-center">
+                    <h2>Shopping Cart</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+<div class="containerx">
+    <div id="container">
+     
+      <div id="error-box">
+        <div class="dot"></div>
+        <div class="dot two"></div>
+        <div class="face2">
+          <div class="eye"></div>
+          <div class="eye right"></div>
+          <div class="mouth sad"></div>
+        </div>
+        <div class="shadow move"></div>
+        <div class="message"><h1 class="alert">Error!</h1> <p style="font-size: 9px;" id="id">There are no products in your cart</div>
+        <a href="{% url 'home' %}" class="button-box"><h1 class="red">try again</h1></a>
+      </div>
+    </div>
+    </div>
+    
+  
+  
+<style>
+
+
+.containerx {
+  display: grid;
+  overflow: hidden;
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+#container {
+  position: relative;
+  margin: auto;
+  overflow: hidden;
+  width: 700px;
+  left: -150px;
+  height: 250px;
+}
+
+.alert,.red {
+  font-size: 0.9em;
+  font-weight: 100;
+  letter-spacing: 3px;
+  padding-top: 5px;
+  color: #FCFCFC;
+  padding-bottom: 5px;
+  text-transform: uppercase;
+}
+
+
+
+.red {
+    position: relative;
+    top: 5px;
+    color: #e96075;
+}
+
+.alert {
+  font-weight: 700;
+  letter-spacing: 5px;
+}
+
+ #id{
+  margin-top: -5px;
+  font-size: 0.5em;
+  font-weight: 100;
+  color: #5e5e5e;
+  letter-spacing: 1px;
+}
+
+a, .dot {
+  cursor: pointer;
+}
+
+
+
+#error-box {
+  position: absolute;
+  width: 35%;
+  height: 100%;
+  right: 12%;
+  background: linear-gradient(to bottom left, #EF8D9C 40%, #FFC39E 100%);
+  border-radius: 20px;
+  box-shadow: 5px 5px 20px rgba(203, 205, 211, 0.1);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background: #FCFCFC;
+  border-radius: 50%;
+  position: absolute;
+  top: 4%;
+  right: 6%;
+}
+.dot:hover {
+  background: #c9c9c9;
+}
+
+.two {
+  right: 12%;
+  opacity: 0.5;
+}
+
+.face {
+  position: absolute;
+  width: 22%;
+  height: 22%;
+  background: #FCFCFC;
+  border-radius: 50%;
+  border: 1px solid #777777;
+  top: 21%;
+  left: 37.5%;
+  z-index: 2;
+  animation: bounce 1s ease-in infinite;
+}
+
+.face2 {
+  position: absolute;
+  width: 22%;
+  height: 22%;
+  background: #FCFCFC;
+  border-radius: 50%;
+  border: 1px solid #777777;
+  top: 21%;
+  left: 37.5%;
+  z-index: 2;
+  animation: roll 3s ease-in-out infinite;
+}
+
+.eye {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: #777777;
+  border-radius: 50%;
+  top: 40%;
+  left: 20%;
+}
+
+.right {
+  left: 68%;
+}
+
+.mouth {
+  position: absolute;
+  top: 43%;
+  left: 41%;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.happy {
+  border: 2px solid;
+  border-color: transparent #777777 #777777 transparent;
+  transform: rotate(45deg);
+}
+
+.sad {
+  top: 49%;
+  border: 2px solid;
+  border-color: #777777 transparent transparent #777777;
+  transform: rotate(45deg);
+}
+
+.shadow {
+  position: absolute;
+  width: 21%;
+  height: 3%;
+  opacity: 0.5;
+  background: #777777;
+  left: 40%;
+  top: 43%;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.scale {
+  animation: scale 1s ease-in infinite;
+}
+
+.move {
+  animation: move 3s ease-in-out infinite;
+}
+
+.message {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  height: 40%;
+  top: 47%;
+}
+
+.button-box {
+  position: absolute;
+  background: #FCFCFC;
+  width: 50%;
+  height: 15%;
+  border-radius: 20px;
+  top: 83%;
+  left: 25%;
+  outline: 0;
+  border: none;
+  box-shadow: 2px 2px 10px rgba(119, 119, 119, 0.5);
+  transition: all 0.5s ease-in-out;
+}
+.button-box:hover {
+  background: #efefef;
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+}
+
+@keyframes bounce {
+  50% {
+    transform: translateY(-10px);
+  }
+}
+@keyframes scale {
+  50% {
+    transform: scale(0.9);
+  }
+}
+@keyframes roll {
+  0% {
+    transform: rotate(0deg);
+    left: 25%;
+  }
+  50% {
+    left: 60%;
+    transform: rotate(168deg);
+  }
+  100% {
+    transform: rotate(0deg);
+    left: 25%;
+  }
+}
+@keyframes move {
+  0% {
+    left: 25%;
+  }
+  50% {
+    left: 60%;
+  }
+  100% {
+    left: 25%;
+  }
+}
+@media only screen and (min-width: 480px) and (max-width: 767px){
+    #container{
+        position: relative;
+        left: -225px;
+    }
+}
+</style>
+{% endif %}
+{% endblock %}

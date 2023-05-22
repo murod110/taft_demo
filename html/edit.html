@@ -1,0 +1,61 @@
+{% extends  'base.html' %}
+{% load static %}
+{% block content %}
+<div class="product-big-title-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-bit-title text-center">
+                    <h2>Buy Product</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-10 col-md-offset-1">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th class="text-center">Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <form action="" method="POST">{% csrf_token %}
+                    <tr>
+                        <td class="col-sm-8 col-md-6">
+                        <div class="media">
+                            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="{{product.photo.url}}" style="width: 72px; height: 72px;"> </a>
+                            <div class="media-body">
+                                <h4 class="media-heading"><a href="#">{{product.qulity.name}}</a></h4>
+                                <h5 class="media-heading"> by <a href="#">{{product.design}}</a></h5>
+                                <span>Color: </span><span class="text-success"><strong>{{product.color}}</strong></span>
+                            </div>
+                        </div></td>
+                        <td class="col-sm-1 col-md-2" style="text-align: center">
+                            <input type="number" name="quantity" class="form-control" id="exampleInputEmail1" min="100" step="100" value="100"><span>m</span><sup>2</sup>
+                        </td>
+                        <td class="col-sm-1 col-md-2 text-center"><strong id="value">{{product.price}}</strong><span>000 so'm</span></td>
+                    </tr>
+                    <tr>
+                        <td>   </td>
+                        
+                        <td>
+                        <td>
+                            <button type="submit" class="btn btn-success">
+                                Submit
+                            </button>
+                        </td>
+                    </tr>
+                    </form>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+</script>
+{% endblock %}

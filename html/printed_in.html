@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="product-big-title-area">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-12">
+              <div class="product-bit-title text-center">
+                  <h2>{{category}}</h2>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<div class="single-product-area">
+  <div class="zigzag-bottom"></div>
+  <div class="container">
+      <div class="row">
+          <div class="col-md-4">
+              
+              <div class="single-sidebar">
+                <h2 class="sidebar-title">Products</h2>
+                {% for p in products %}
+                <div class="thubmnail-recent">
+                    <img src="{{p.photo.url}}" class="recent-thumb" alt="">
+                    <h2><a href="{% url 'more' p.id%}">{{p.quality.name}} - {{p.date.year}}</a></h2>
+                    <div class="product-sidebar-price">
+                        {% if product.sale %}<ins>${{product.saleValue}}</ins> <del>${{product.price}}</del>{% else %}{% if product.price %}<ins>${{product.price}}</ins>{% endif %}{% endif %} 
+                    </div>                             
+                </div>
+                {% endfor %}
+              </div>
+              
+              <div class="single-sidebar">
+                <h2 class="sidebar-title">Recent Posts</h2>
+                <ul>
+                    {% for i in best %}
+                    <li><a href="{% url 'more' i.id%}">{{i.quality.name}} - {{i.design}}</a></li>
+                    {% endfor %}
+                </ul>
+              </div>
+          </div>
+          
+          <div class="col-md-8">
+              <div class="product-content-right">
+                  <div class="cart-collaterals">
+                      <div class="cross-sells">
+                          <h2>Our category in...</h2>
+                          <ul class="products">
+                              <li class="product">
+                                  <a href="{% url 'hh' 1%}">
+                                      <img width="325" height="325" alt="T_4_front" class="attachment-shop_catalog wp-post-image" src="{% static 'images/hotel.jpg' %}">
+                                      <h3>Hotel Designs</h3>
+                                  </a>
+
+                                  <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="22" rel="nofollow" href="{% url 'hh' 1%}">Select options</a>
+                              </li>
+
+                              <li class="product">
+                                  <a href="{% url 'hh' 2%}">
+                                      <img width="325" height="325" alt="T_4_front" class="attachment-shop_catalog wp-post-image" src="{% static 'images/home.jpg' %}">
+                                      <h3>Home designs</h3>
+                                     
+                                  </a>
+
+                                  <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="22" rel="nofollow" href="{% url 'hh' 2%}">Select options</a>
+                              </li>
+                          </ul>
+                      </div>
+                  </div>                        
+              </div> 
+              <div class="related-products-wrapper">
+                <h2 class="related-products-title">Related Products</h2>
+                <div class="related-products-carousel">
+                    {% for k,v in rateds.items %}
+                    <div class="single-product">
+                        <div class="product-f-image">
+                            <img src="{{k.photo.url}}" style="height: 300px;" alt="">
+                            <div class="product-hover">
+                                <a href="{% url 'buy' k.id%}" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                                <a href="{% url 'more' k.id%}" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                            </div>
+                        </div>
+
+                        <h2><a href="{% url 'more' k.id%}">{{k.quality.name}} - {{k.design}}</a></h2>
+
+                        <div class="product-carousel-price">
+                            {% if k.sale %}<ins>${{k.saleValue}}</ins> <del>${{k.price}}</del>{% else %}{% if k.price %}<ins>${{k.price}}</ins>{% endif %}{% endif %} 
+                        </div> 
+                    </div>
+                    {% endfor %}           
+                </div>
+            </div>                   
+          </div>
+      </div>
+  </div>
+</div>
+
+
+{% endblock %}
